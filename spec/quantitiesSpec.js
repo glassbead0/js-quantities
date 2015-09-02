@@ -154,6 +154,14 @@ describe("js-quantities", function() {
       expect(qty.denominator).toEqual(["<second>","<second>","<joule>","<joule>","<joule>"]);
     });
 
+    it("should create watthour units", function() {
+      var qty = Qty("1 KWH");
+      expect(qty.scalar).toBe(1);
+      expect(qty.baseScalar).toBe(3600000)
+      expect(qty.numerator).toEqual(["<kilo>", "<Wh>"]);
+      expect(qty.denominator).toEqual(["<1>"])
+    });
+
     it("should create with zero power", function() {
       var qty = Qty("1 m^0");
       expect(qty.scalar).toBe(1);
@@ -1218,7 +1226,7 @@ describe("js-quantities", function() {
     it("should return an array of kind names", function() {
       expect(Qty.getKinds()).toContain("resistance");
     });
-    
+
     it("should not contain duplicate kind names", function() {
       var kinds = Qty.getKinds();
       var map = {};
